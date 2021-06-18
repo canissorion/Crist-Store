@@ -1,5 +1,6 @@
 import React from "react";
 import "./Navbar.css";
+import CartWidget from '../components/CartWidget/CartWidget.js';
 
 export default function Navbar() {
   return (
@@ -11,7 +12,7 @@ export default function Navbar() {
         <ul className="navbar-nav px-3">
           <li className="nav-item text-nowrap">
             <a className="nav-link" href="/s">
-              item
+            <CartWidget/>
             </a>
           </li>
         </ul>
