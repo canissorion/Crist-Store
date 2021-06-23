@@ -1,5 +1,5 @@
 .full-container {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+}

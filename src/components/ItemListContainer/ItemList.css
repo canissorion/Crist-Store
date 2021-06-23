@@ -1,0 +1,33 @@
+.welcome {
+  color: blanchedalmond;
+  font-size: 1.2rem;
+  font-weight: 500;
+  top: 8vw;
+  left: 40vw;
+  position: absolute;
+}
+
+.item-list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 89px 26px;
+}
+
+.item-list-container h2 {
+  margin-bottom: 13px;
+}
+
+.item-list-container p {
+  font-size: 1.3rem;
+}
+
+.product-list-container {
+  display: grid;
+  grid-template: 1fr / 1fr 1fr 1fr;
+  gap: 39px;
+  margin: 39px 26px;
+  opacity: 89%;
+}
