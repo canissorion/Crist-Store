@@ -1,7 +1,8 @@
 svg:hover {
-  fill: rgb(25, 56, 233);
+  fill: blue;
 }
 
 .carrito {
   margin-right: 5em;
+  color: cadetblue;
 }
