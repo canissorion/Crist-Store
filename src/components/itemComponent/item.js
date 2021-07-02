@@ -8,19 +8,19 @@ function Item(props) {
     const card = (
         <Row >
             {props.items.map((item) =>
-                <Col key={item.id} >
-                    <Card className="mt-2 mb-2" style={{ width: '18rem' }}>
-                        <Card.Img variant="top" src={item.pictureUrl} />
-                        <Card.Body>
-                            <Card.Title>{item.title}</Card.Title>
+                <Col key={item.id} xs="3" >
+                <Card className="mt-2 mb-2"  >
+                    <Card.Img variant="top" src={item.pictureUrl} style={{ height:"300px", padding:"0 5%"}} />
+                    <Card.Body className="text-center">
+                        <Card.Title className="text-uppercase">{item.title}</Card.Title>
                             <Card.Text>
                                 {item.description}
                                 <br></br>
                                 {item.price}
                             </Card.Text>
-                            <Button variant="primary">Ver</Button>
+                            <ItemCount />
+                            <Button className="mb-2" variant="primary">Detalles</Button>
                         </Card.Body>
-                        <ItemCount />
                     </Card>
                 </Col>
             )}

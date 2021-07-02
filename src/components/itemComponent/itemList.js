@@ -51,9 +51,7 @@ function ItemList() {
     }, []);
 
     return (
-        <div>
             <Item items={data} />
-        </div>
     )
 
 }

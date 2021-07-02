@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./ItemCount.css";
+import { Button } from 'react-bootstrap';
 
 function ItemCount(props) {
   const [state, setState] = useState({
@@ -47,10 +48,11 @@ function ItemCount(props) {
 
   return (
     <div className="plot">
-      <p className="cantidad"> {state.initial} </p>
-      <button class="btn btn-primary pad" onClick={handleAddItem}>+</button>
-      <button class="btn btn-primary pad" onClick={handleRemoveItem}>-</button>
-      <button class="btn btn-primary" onClick={handleAddCar}>Agregar al Carrito</button>
+      <Button variant="info" className="mb-2" onClick={handleAddItem}>+</Button>
+      <label className="cantidad pl-2 pr-2 mb-2"> {state.initial} </label>
+      <Button variant="danger" className="mb-2" onClick={handleRemoveItem}>-</Button>
+      <br></br>
+      <Button variant="info" onClick={handleAddCar}>Agregar al Carrito</Button>
     </div>
   );
 }
