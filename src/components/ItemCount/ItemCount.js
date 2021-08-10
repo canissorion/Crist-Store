@@ -1,60 +1,45 @@
-import React, { useState } from "react";
-import "./ItemCount.css";
-import { Button } from 'react-bootstrap';
+import React, { useState, useEffect } from "react";
+import RemoveIcon from "@material-ui/icons/Remove";
+import AddIcon from "@material-ui/icons/Add";
 
-function ItemCount(props) {
-  const [state, setState] = useState({
-    initial: 0,
-    stock: 5,
-    onAdd: 0
-  });
+import "./ItemCount.scss";
 
-  const handleAddItem = (e) => {
-    e.preventDefault();
-    const { initial, stock, onAdd } = state;
-    const newInitial = initial + 1;
-    if (stock >= newInitial) {
-      setState((prevState) => ({
-        ...prevState,
-        initial: newInitial,
-        onAdd: onAdd + 1
-      }));
-    }
+const ItemCount = ({ initial, min, max, setQuantity }) => {
+  const [counter, setCounter] = useState(initial);
+
+  const handleIncrement = () => {
+    counter < max ? setCounter(counter + 1) : console.log("Máximo alcanzado");
   };
 
-  const handleRemoveItem = (e) => {
-    e.preventDefault();
-    const { initial, onAdd } = state;
-    const newInitial = initial - 1;
-    if (newInitial >= 0) {
-      setState((prevState) => ({
-        ...prevState,
-        initial: newInitial,
-        onAdd: onAdd - 1
-      }));
-    }
+  const handleDecrement = () => {
+    counter > min ? setCounter(counter - 1) : console.log("Mínimo alcanzado");
   };
 
-  const handleAddCar = (e) => {
-    e.preventDefault();
-    const { stock, onAdd } = state;
-    console.log(`Agregado ${onAdd} al carrito`);
-    setState(() => ({
-      stock: stock - onAdd,
-      initial: 0,
-      onAdd: 0
-    }));
-  };
+  useEffect(() => {
+    setQuantity(counter);
+  }, [counter, setQuantity]);
 
   return (
-    <div className="plot">
-      <Button variant="info" className="mb-2" onClick={handleAddItem}>+</Button>
-      <label className="cantidad pl-2 pr-2 mb-2"> {state.initial} </label>
-      <Button variant="danger" className="mb-2" onClick={handleRemoveItem}>-</Button>
-      <br></br>
-      <Button variant="info" onClick={handleAddCar}>Agregar al Carrito</Button>
+    <div className="counter" style={{ width: "15rem" }}>
+      <div className="counter__content">
+        <div className="counter__content-controls">
+          <span
+            className="counter__content-controls-subtract"
+            onClick={handleDecrement}
+          >
+            <RemoveIcon />
+          </span>
+          <span className="counter__content-controls-value"> {counter} </span>
+          <span
+            className="counter__content-controls-add"
+            onClick={handleIncrement}
+          >
+            <AddIcon />
+          </span>
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default ItemCount;

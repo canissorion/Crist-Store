@@ -1,44 +1,54 @@
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import NavBar from './Components/Navbar/NavBar.jsx';
-import SideBar from './Components/Navbar/SideBar.js';
-import { ItemListContainer } from './Components/ItemListContainer/ItemListContainer'
-import ItemDetailContainer from './Components/ItemDetails/ItemDetailContainer'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Row, Col } from 'react-bootstrap'
-import Cremas from './views/Cremas';
-import Home from './views/Home';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
+import Home from "./pages/Home/Home";
+import Cart from "./pages/Cart/Cart";
+import ItemDetailPage from "./pages/ItemDetailPage/ItemDetailPage";
+import Categories from "./pages/Categories/Categories";
+import Form from "./pages/Form/Form";
+
+import CartContext from "./contexts/cartContext";
 
 function App() {
-  return (
-    <Router>
-      <NavBar/>
-      <Switch>
-        <div className="app">
-          <Row style={{ margin: "0" }}>
-            <SideBar />
-            <Route path="/productos">
-              <ItemListContainer greetings="Daniel Campuzano" />
-            </Route>
-            <Route path="/category/cremas">
-              <Col xs="10" className="p-5">
-                <Cremas />
-              </Col>
-            </Route>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/details/:id">
-              <ItemDetailContainer />
-            </Route>
-          </Row>
-        </div>
-      </Switch>
-    </Router>
+  const [cart, setCart] = useState([]);
+  const [qnt, setQnt] = useState(0);
 
+  const greeting = "Bienvenido Francisco Rodriguez";
+
+  return (
+    <div>
+      <CartContext.Provider value={{ cart, setCart, qnt, setQnt }}>
+        <Router>
+          <CssBaseline>
+            <Navbar />
+            <Switch>
+              <Route exact path="/">
+                <Home greeting={greeting} />
+              </Route>
+              <Route path="/form">
+                <Form />
+              </Route>
+              <Route path="/item/:id">
+                <ItemDetailPage />
+              </Route>
+              <Route path="/categories/:categoryId">
+                <Categories />
+              </Route>
+              <Route path="/cart">
+                <Cart />
+              </Route>
+            </Switch>
+            <Footer />
+          </CssBaseline>
+        </Router>
+      </CartContext.Provider>
+    </div>
   );
 }
 
 export default App;
-

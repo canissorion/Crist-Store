@@ -1,0 +1,27 @@
+footer {
+  background-color: #0c2e61;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 25vh;
+  margin-top: 100px;
+
+  .social {
+    padding-top: 20px;
+
+    a {
+      .social-icons {
+        color: #ffffff;
+      }
+    }
+
+    &-github {
+      margin-right: 50px;
+    }
+
+    &-linkedin {
+      margin-left: 50px;
+    }
+  }
+}
